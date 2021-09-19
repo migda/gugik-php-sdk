@@ -1,36 +1,37 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "migda/gugik-php-sdk",
+    "description": "PHP SDK for http://capap.gugik.gov.pl/api/fts/ API ",
     "keywords": [
-        ":vendor_name",
-        ":package_slug"
+        "migda",
+        "gugik-php-sdk"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/migda/gugik-php-sdk",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Rafal Migda",
+            "email": "info@loremedia.pl",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": "^8.0"
+        "php": "^7.4 | ^8.0",
+        "guzzlehttp/guzzle": "^7.0",
+        "spatie/data-transfer-object": "^2.8"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.0",
         "phpunit/phpunit": "^9.5",
-        "spatie/ray": "^1.28",
         "vimeo/psalm": "^4.8"
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src"
+            "Migda\\GugikSdk\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Migda\\GugikSdk\\Tests\\": "tests"
         }
     },
     "scripts": {
