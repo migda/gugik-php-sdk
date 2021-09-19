@@ -33,11 +33,11 @@ class GugikRequest
      */
     public function validateMethod(): void
     {
-        if (!$this->method) {
+        if (! $this->method) {
             throw new GugikException('HTTP method was not specified.');
         }
 
-        if (!in_array($this->method, HttpMethod::ALLOWED_METHODS)) {
+        if (! in_array($this->method, HttpMethod::ALLOWED_METHODS)) {
             throw new GugikException('Specified HTTP method is invalid. Use: '
                 . implode(', ', HttpMethod::ALLOWED_METHODS));
         }

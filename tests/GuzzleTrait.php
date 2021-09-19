@@ -32,6 +32,7 @@ trait GuzzleTrait
     {
         $mock = new MockHandler($responses);
         $handlerStack = HandlerStack::create($mock);
+
         return new GuzzleClient(['handler' => $handlerStack]);
     }
 
