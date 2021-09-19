@@ -18,7 +18,7 @@ class GugikRequest
      *
      * @param string|null $method
      * @param string|null $endpoint
-     * @param array|null $params
+     * @param array $params
      * @throws GugikException
      */
     public function __construct(string $method = null, string $endpoint = null, array $params = [])
@@ -117,7 +117,7 @@ class GugikRequest
     }
 
     /**
-     * @param string
+     * @param string $method
      *
      * @return GugikRequest
      * @throws GugikException

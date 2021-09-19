@@ -3,8 +3,8 @@
 namespace Migda\GugikSdk;
 
 use Migda\GugikSdk\Enums\GugikEndpoint;
-use Migda\GugikSdk\HttpClients\HttpClientInterface;
 use Migda\GugikSdk\Enums\HttpMethod;
+use Migda\GugikSdk\HttpClients\HttpClientInterface;
 use Migda\GugikSdk\Objects\Req\Gc\Dze\GcReqDze;
 use Migda\GugikSdk\Objects\Req\Gc\Jpa\GcReqJpa;
 use Migda\GugikSdk\Objects\Req\ReqBaseObject;
@@ -12,12 +12,11 @@ use Migda\GugikSdk\Objects\Req\Rgc\Adr\RgcReqAdr;
 use Migda\GugikSdk\Objects\Req\Rgc\Dze\RgcReqDze;
 use Migda\GugikSdk\Objects\Res\GcResult;
 use Migda\GugikSdk\Objects\Res\GcResultCollection;
-use Spatie\DataTransferObject\DataTransferObject;
 
 class Gugik
 {
     /**
-     * @var null
+     * @var GugikClient|null
      */
     protected $client = null;
 
