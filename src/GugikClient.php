@@ -2,13 +2,13 @@
 
 namespace Migda\GugikSdk;
 
-use Migda\GugikSdk\HttpClients\GuzzleHttpClient;
 use Migda\GugikSdk\Enums\HttpMethod;
+use Migda\GugikSdk\HttpClients\GuzzleHttpClient;
 use Migda\GugikSdk\HttpClients\HttpClientInterface;
 
 class GugikClient
 {
-    const BASE_URL = 'http://capap.gugik.gov.pl/api/fts/';
+    public const BASE_URL = 'http://capap.gugik.gov.pl/api/fts/';
 
     /**
      * Http client

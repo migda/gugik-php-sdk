@@ -25,5 +25,4 @@ interface HttpClientInterface
      * @return $this
      */
     public function setTimeOut($timeOut): self;
-
 }

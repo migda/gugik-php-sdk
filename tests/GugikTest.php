@@ -7,7 +7,6 @@ use Migda\GugikSdk\Gugik;
 use Migda\GugikSdk\HttpClients\GuzzleHttpClient;
 use PHPUnit\Framework\TestCase;
 
-
 class GugikTest extends TestCase
 {
     use GuzzleTrait;
