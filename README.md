@@ -1,42 +1,115 @@
-# :package_description
+# PHP Client for http://capap.gugik.gov.pl/api/fts/ API
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/:vendor_slug/:package_slug/run-tests?label=tests)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3ATests+branch%3Amaster)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/:vendor_slug/:package_slug/Check%20&%20fix%20styling?label=code%20style)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amaster)
-[![Total Downloads](https://img.shields.io/packagist/dt/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/migda/gugik-php-sdk.svg?style=flat-square)](https://packagist.org/packages/migda/gugik-php-sdk)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/migda/gugik-php-sdk/run-tests?label=tests)](https://github.com/migda/gugik-php-sdk/actions?query=workflow%3ATests+branch%3Amaster)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/migda/gugik-php-sdk/Check%20&%20fix%20styling?label=code%20style)](https://github.com/migda/gugik-php-sdk/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amaster)
+[![Total Downloads](https://img.shields.io/packagist/dt/migda/gugik-php-sdk.svg?style=flat-square)](https://packagist.org/packages/migda/gugik-php-sdk)
 
----
-This package can be used as to scaffold a framework agnostic package. Follow these steps to get started:
+PHP Client for http://capap.gugik.gov.pl/api/fts/ API - geocoding and reverse geocoding of administration units,
+addresses, plots, etc in Poland.
 
-1. Press the "Use template" button at the top of this repo to create a new repo with the contents of this skeleton
-2. Run "php ./configure.php" to run a script that will replace all placeholders throughout all the files
-3. Have fun creating your package.
-4. If you need help creating a package, consider picking up our <a href="https://laravelpackage.training">Laravel Package Training</a> video course.
----
-
-This is where your description should go. Try and limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/:package_name.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/:package_name)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+This is an unofficial PHP SDK for the CAPAP GUGiK API.
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require :vendor_slug/:package_slug
+composer require migda/gugik-php-sdk
 ```
 
 ## Usage
 
 ```php
-$skeleton = new VendorName\Skeleton();
-echo $skeleton->echoPhrase('Hello, VendorName!');
+// Geocode commune
+
+$gugik = new Gugik();
+
+$reqs = new GcSingleJpaCollection([
+    new GcSingleJpa([
+        "gm_nazwa" => "dębno",
+        "pow_nazwa" => "brzeski",
+        "woj_nazwa" => "małopolskie",
+    ]),
+]);
+
+$req = new GcReqJpa([
+    'reqs' => $reqs,
+]);
+
+$results = $gugik->gcGmi($req);
+$currentResult = $results->current();
+```
+
+```php
+// Reverse geocode address point
+
+$gugik = new Gugik();
+
+$req = new RgcReqAdr([
+    'd' => 500.00,
+    'x' => 16.925,
+    'y' => 51.089,
+]);
+
+$result = $gugik->rgcAdr($req);
+```
+
+```php
+// Reverse geocode plot
+
+$gugik = new Gugik();
+
+$req = new RgcReqDze([
+    'd' => 500.00,
+    'x' => 16.925,
+    'y' => 51.089,
+]);
+
+$result = $gugik->rgcDze($req);
+```
+
+### Available methods:
+
+#### Geocoding
+
+```php 
+/**
+ * Geokodowanie działek - lpis
+ * Geocode plots (lpis) using post
+ *
+ * http://capap.gugik.gov.pl/api/fts/#_geocodedzelpisusingpost
+ */
+public function gcDzeLpis(GcReqDze $req): GcResultCollection
+
+/**
+ * Geokodowanie gmin
+ * Geocode communes using post
+ *
+ * http://capap.gugik.gov.pl/api/fts/#_geocodegmiusingpost
+ */
+public function gcGmi(GcReqJpa $req): GcResultCollection
+```
+
+#### Reverse geocoding
+
+```php
+/**
+ * Odwrotne geokodowanie - punkty adresowe
+ * Reverse geocode address points using get
+ *
+ * http://capap.gugik.gov.pl/api/fts/#_d8df035f1b22f89d3c826789834b2d65
+ */
+public function rgcAdr(RgcReqAdr $req): GcResult
+
+
+/**
+ * Odwrotne geokodowanie - działki
+ * Reverse geocode plots using get
+ *
+ * http://capap.gugik.gov.pl/api/fts/#_dzeusingget
+ */
+public function rgcDze(RgcReqDze $req): GcResult
 ```
 
 ## Testing
@@ -49,6 +122,13 @@ composer test
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
+## TODO
+
+1. Handle more endpoints from: http://capap.gugik.gov.pl/api/fts/
+2. More complex DTO for responses (right now there is only very basic GcResult class)
+3. More tests
+4. Improve exceptions
+
 ## Contributing
 
 Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
@@ -59,7 +139,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [Rafal Migda](https://github.com/migda)
 - [All Contributors](../../contributors)
 
 ## License
