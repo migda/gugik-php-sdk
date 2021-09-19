@@ -1,11 +1,17 @@
-# PHP Client for http://capap.gugik.gov.pl/api/fts/ API
+# PHP SDK for http://capap.gugik.gov.pl/api/fts/ API
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/migda/gugik-php-sdk.svg?style=flat-square)](https://packagist.org/packages/migda/gugik-php-sdk)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/migda/gugik-php-sdk/run-tests?label=tests)](https://github.com/migda/gugik-php-sdk/actions?query=workflow%3ATests+branch%3Amaster)
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/migda/gugik-php-sdk/Check%20&%20fix%20styling?label=code%20style)](https://github.com/migda/gugik-php-sdk/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/migda/gugik-php-sdk.svg?style=flat-square)](https://packagist.org/packages/migda/gugik-php-sdk)
 
-PHP Client for http://capap.gugik.gov.pl/api/fts/ API - geocoding and reverse geocoding of administration units,
+---
+
+PLEASE READ TERMS OF USE OF CAPAP GUGiK API BEFORE USE THIS PACKAGE: http://capap.gugik.gov.pl/api/fts/#_informacja_o_licencji
+
+---
+
+PHP SDK for http://capap.gugik.gov.pl/api/fts/ API - geocoding and reverse geocoding of administration units,
 addresses, plots, etc in Poland.
 
 This is an unofficial PHP SDK for the CAPAP GUGiK API.
